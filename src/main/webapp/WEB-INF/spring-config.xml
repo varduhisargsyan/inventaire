@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/tx
+         http://www.springframework.org/schema/tx/spring-tx.xsd
+         http://www.springframework.org/schema/context
+         http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/Inventaire"/>
+        <property name="username" value="root"/>
+        <property name="password" value="Dbentrance0"/>
+    </bean>
+
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="packagesToScan" value="org.sp.librairie.inventaire.model"/>
+        <property name="annotatedClasses">
+            <list>
+                <value>org.sp.librairie.inventaire.model.Client</value>
+                <value>org.sp.librairie.inventaire.model.Book</value>
+                <value>org.sp.librairie.inventaire.model.BookCase</value>
+                <value>org.sp.librairie.inventaire.model.Category</value>
+                <value>org.sp.librairie.inventaire.model.Log</value>
+                <value>org.sp.librairie.inventaire.model.Sales</value>
+                <value>org.sp.librairie.inventaire.model.BookRequest</value>
+                            </list>
+        </property>
+        <property name="hibernateProperties">
+            <value>
+                <!-- hibernate.hbm2ddl.auto=create-->
+                hibernate.dialect=org.hibernate.dialect.MySQL5InnoDBDialect
+                hibernate.show_sql=true
+                hibernate.format_sql=true
+    <!-- hibernate.use_sql_comments=true-->
+ </value>
+</property>
+</bean>
+
+
+<!--Transaction-->
+    <bean id="txManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <tx:annotation-driven transaction-manager="txManager"/>
+
+
+    <!--ExceptionTranslator-->
+    <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
+
+    <!--Dao-->
+
+    <bean id="bookDao" class="org.sp.librairie.inventaire.dao.impl.BookDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="clientDao" class="org.sp.librairie.inventaire.dao.impl.ClientDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="categoryDao" class="org.sp.librairie.inventaire.dao.impl.CategoryDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="salesDao" class="org.sp.librairie.inventaire.dao.impl.SalesDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="receipeDao" class="org.sp.librairie.inventaire.dao.impl.ReceipeDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="lotDao" class="org.sp.librairie.inventaire.dao.impl.LotDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="bookRequestDao" class="org.sp.librairie.inventaire.dao.impl.BookRequestDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <!--Service-->
+    <bean id="categoryService" class="org.sp.librairie.inventaire.service.CategoryService">
+        <property name="categoryDao" ref="categoryDao"/>
+    </bean>
+    <bean id="bookService" class="org.sp.librairie.inventaire.service.BookService">
+        <property name="bookDao" ref="bookDao"/>
+    </bean>
+    <bean id="clientService" class="org.sp.librairie.inventaire.service.ClientService">
+        <property name="clientDao" ref="clientDao"/>
+    </bean>
+    <bean id="salesService" class="org.sp.librairie.inventaire.service.SalesService">
+        <property name="salesDao" ref="salesDao"/>
+    </bean>
+    <bean id="receipeService" class="org.sp.librairie.inventaire.service.ReceipeService">
+        <property name="receipeDao" ref="receipeDao"/>
+    </bean>
+    <bean id="requestService" class="org.sp.librairie.inventaire.service.BookRequestService">
+        <property name="requestDao" ref="bookRequestDao"/>
+    </bean>
+    <bean id="lotService" class="org.sp.librairie.inventaire.service.LotService">
+        <property name="lotDao" ref="lotDao"/>
+    </bean>
+
+
+    <!-- Actions-->
+    <bean id="advancedSearchAction" class="org.sp.librairie.inventaire.action.AdvancedSearchAction" scope="prototype">
+        <property name="bookService" ref="bookService"/>
+        <property name="categoryService" ref="categoryService"/>
+    </bean>
+    <bean id="inventaireAction" class="org.sp.librairie.inventaire.action.InventaireAction" scope="prototype">
+        <property name="categoryService" ref="categoryService"/>
+    </bean>
+
+    <bean id="clientAction" class="org.sp.librairie.inventaire.action.ClientAction" scope="prototype">
+        <property name="clientService" ref="clientService"/>
+
+    </bean>
+    <bean id="categoryAction" class="org.sp.librairie.inventaire.action.CategoryAction" scope="prototype">
+        <property name="categoryService" ref="categoryService"/>
+
+    </bean>
+    <bean id="bookAction" class="org.sp.librairie.inventaire.action.BookAction" scope="prototype">
+        <property name="bookService" ref="bookService"/>
+        <property name="categoryService" ref="categoryService"/>
+    </bean>
+    <bean id="requestAction" class="org.sp.librairie.inventaire.action.RequestAction" scope="prototype">
+        <property name="requestService" ref="requestService"/>
+        <property name="clientService" ref="clientService"/>
+        <property name="categoryService" ref="categoryService"/>
+    </bean>
+    <bean id="lotAction" class="org.sp.librairie.inventaire.action.LotAction" scope="prototype">
+        <property name="lotService" ref="lotService"/>
+
+    </bean>
+    <bean id="salesAction" class="org.sp.librairie.inventaire.action.SalesAction" scope="prototype">
+        <property name="bookService" ref="bookService"/>
+    </bean>
+    <bean id="flowAction" class="org.sp.librairie.inventaire.action.FlowAction" scope="prototype">
+        <property name="bookService" ref="bookService"/>
+    </bean>
+    <bean id="salesReportAction" class="org.sp.librairie.inventaire.action.SalesReportAction" scope="prototype">
+        <property name="salesService" ref="salesService"/>
+    </bean>
+    <bean id="riceiptReportAction" class="org.sp.librairie.inventaire.action.ReceiptReportAction" scope="prototype">
+        <property name="receipeService" ref="receipeService"/>
+    </bean>
+    <bean id="basicSearchAction" class="org.sp.librairie.inventaire.action.BasicSearchAction" scope="prototype">
+        <property name="bookService" ref="bookService"/>
+    </bean>
+</beans>

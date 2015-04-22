@@ -1,0 +1,286 @@
+/*NAVBAR*/
+nav.navbar {
+    margin: 0px;
+    background-color: #00CCFF
+
+}
+
+small.nav-small {
+    color: #ffffff;
+}
+
+a.navbar-brand {
+    margin-top: -14px;
+    margin-left: -14px
+}
+
+/* END NAVBAR*/
+
+/*CONTENT*/
+div.content {
+    background-color: #F5F5FF;
+    min-height: 100%;
+
+}
+
+div.content_body {
+    height: 100%;
+    background-color: #F5F5FF;
+
+}
+
+/* END CONTENT*/
+/*CONTENT HEADER _CATEGORY SELECT + ADD BUTTON*/
+div.content_header {
+    padding: 0px;
+    background-color: #F5F5FF;
+}
+
+div.panel {
+    margin-top: 30px;
+
+}
+div.found_title{
+    font-weight: bold;
+    padding: 3px;
+}
+div.panel-heading {
+    margin-top: 10px;
+    padding-top: 0px;
+}
+
+form.form-inline {
+    padding: 0px;
+
+}
+
+div.category {
+
+    padding: 0px;
+}
+
+div.add {
+
+    padding: 0px;
+}
+
+/* END CONTENT HEADER _CATEGORY SELECT + ADD BUTTON*/
+
+/*DISPLAY TAG */
+span.page_numb {
+    padding: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: large;
+    font-weight: 400;
+}
+
+div.pagination_table {
+    padding: 0px;
+    margin: 0px;
+    font-family: "Lucida Grande", "Tahoma", serif;
+    font-size: smaller;
+    background-color: #ffffff;
+
+}
+
+div.pagination_panel {
+
+}
+
+div.pagination_found {
+    text-align: left;
+    font-weight: bolder;
+}
+
+table.pagination {
+    width: 100%;
+    max-height: 700px;
+    background-color: #FFFFFF;
+    font-size: small;
+    font-weight: bold;
+}
+
+a.control {
+    padding: 3px;
+    color: #833083;
+}
+
+td {
+    min-width: 40px;
+    max-width: 160px;
+    border-bottom: solid 1px lightgray;
+    max-height: 15px;
+}
+
+th {
+    font-weight: bolder;
+    border-bottom: solid 1px lightgray;
+    color: navy;
+    height: 30px;
+    background-color: #FFFFE6;
+}
+
+td.narrow {
+    text-align: center;
+    max-width: 20px;
+}
+
+td.desc {
+    min-width: 70px;
+    max-width: 70px;
+
+
+}
+
+table.tag {
+    margin-top: 3px;
+    margin-bottom: 3px;
+    border: 1px solid darkgrey;
+    background-color: #F5F5FF;
+    color: #751975;
+    font-size: small;
+
+    min-width: 280px;
+    max-width: 280px;
+
+}
+
+td.tag {
+
+}
+
+td.tag_name {
+    min-width:60px;
+    max-width: 60px;
+
+}
+
+td.tag_value {
+    padding-left: 2px;
+    min-width: 200px;
+    max-width: 200px;
+
+}
+
+/* END DISPLAY TAG */
+
+/*MENU SIDE BAR*/
+div.menu_sidebar {
+    padding: 0px;
+    margin: 0px;
+    height: 100% background-color : #F5F5FF;
+}
+
+a.home {
+    background-color: #F5F5FF;
+    font-size: large;
+}
+
+a.menu {
+    background-color: #F5F5FF;
+}
+
+a.menu:hover {
+    background-color: #FFFF99;
+}
+
+span.menu_span-gl {
+    color: #833083
+}
+
+span.menu_span-txt {
+    margin-left: 10px;
+
+}
+
+/* END MENU SIDE BAR*/
+
+/*FOOTER*/
+div.footer {
+    padding-right: 20px;
+
+}
+
+span.copyright {
+    font-size: 1.5em;
+    font-weight: 600;
+    color: #833083;
+    padding: 5px;
+}
+
+/* END FOOTER*/
+/*FORM CRUD*/
+div.panel {
+    margin-top: 0px;
+}
+
+div.cloture {
+    margin-top: 30px;
+
+}
+
+span.cloture {
+    font-size: 1.6em;
+    color: grey;
+    margin-left: -16px;
+    margin-bottom: -6px;
+
+}
+
+span.form_panel_heading_gl {
+    font-size: 2em;
+    font-weight: 600;
+    margin-top: -10px;
+    color: #751975
+}
+
+span.form_panel_heading_txt {
+    font-size: 1.6em;
+    font-weight: 200;
+    padding: 10px;
+    padding-bottom: 30px;
+    font-style: italic;
+
+}
+
+/* END FORM CRUD*/
+
+table.record {
+    background-color: #ffffff;
+    background-color: #FFFF99;
+}
+
+thead.duplicate {
+    height: 10px;
+
+}
+
+tbody.duplicate {
+    height: 10px;
+}
+
+/* REQUEST VIEW*/
+table.tag {
+    font-size: small;
+    font-style: italic;
+
+}
+
+td.tag {
+    padding: 2px;
+}
+
+/* END REQUEST VIEW*/
+
+/*DATEPICKER */
+
+.alert-danger {
+    font-size: xx-small;
+
+}
+
+.form-control-feedback {
+    font-size: x-small;
+}
+

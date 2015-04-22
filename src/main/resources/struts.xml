@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <constant name="struts.ui.theme" value="bootstrap"/>
+    <constant name="struts.custom.i18n.resources" value="package"/>
+
+
+    <package name="default" extends="struts-default" namespace="/">
+        <global-results>
+            <result name="error">/exception.jsp</result>
+            <result name="exception">/exception.jsp</result>
+            <result name="runtime_exception">/exception.jsp</result>
+        </global-results>
+        <global-exception-mappings>
+            <exception-mapping exception="java.lang.Exception" result="exception"></exception-mapping>
+            <exception-mapping exception="java.lang.RuntimeException" result="runtime_exception"></exception-mapping>
+
+        </global-exception-mappings>
+
+        <action name="inventaire" class="inventaireAction">
+            <result name="success">/inventaire.jsp</result>
+            <result name="input">/error404.jsp</result>
+        </action>
+
+        <action name="client_*" class="clientAction" method="{1}">
+            <result name="success">/client_.jsp</result>
+            <result name="input">/client_{1}_input.jsp</result>
+            <result name="add">/client_{1}.jsp</result>
+            <result name="edit">/client_{1}.jsp</result>
+            <result name="list" type="redirect">
+                <param name="location">/client_.action</param>
+            </result>
+
+        </action>
+        <action name="category_*" class="categoryAction" method="{1}">
+            <result name="input">/category_{1}_input.jsp</result>
+            <result name="success">/category_.jsp</result>
+            <result name="add">/category_{1}.jsp</result>
+            <result name="edit">/category_{1}.jsp</result>
+            <result name="list" type="redirect">
+                <param name="location">/category_.action</param>
+            </result>
+
+        </action>
+        <action name="book_*" class="bookAction" method="{1}">
+
+            <result name="input">book_{1}_input.jsp</result>
+            <result name="add">/book_{1}.jsp</result>
+            <result name="delete">/book_{1}.jsp</result>
+            <result name="edit">/book_{1}.jsp</result>
+            <result name="show">/book_{1}.jsp</result>
+            <result name="sale">/book_{1}.jsp</result>
+            <result name="duplicate">/book_duplicate.jsp</result>
+            <result name="duplicate_edit">/book_editDuplicate.jsp</result>
+            <result name="list" type="redirect">
+                <param name="location">/inventaire.action</param>
+                <param name="categoryId">${categoryId}</param>
+            </result>
+
+        </action>
+
+        <action name="basicSearch" class="basicSearchAction">
+            <result name="success">/basicSearchResult.jsp</result>
+            <result name="input">/inventaire.jsp</result>
+        </action>
+
+        <action name="advancedSearch_*" class="advancedSearchAction" method="{1}">
+            <result name="success">/advancedSearchResult.jsp</result>
+            <result name="input">/advancedSearch.jsp</result>
+        </action>
+
+        <action name="sale_*" class="salesAction" method="{1}">
+            <result name="sale">/sale_{1}.jsp</result>
+            <result name="input">/sale_input.jsp</result>
+            <result name="list" type="redirect">
+                <param name="categoryId">${categoryId}</param>
+                <param name="location">/inventaire.action</param>
+            </result>
+        </action>
+
+        <action name="salesReport" class="salesReportAction">
+            <result name="success">/salesReport.jsp</result>
+            <result name="input">/error404.jsp</result>
+        </action>
+
+        <action name="receiptReport" class="riceiptReportAction">
+            <result name="success">/receiptReport.jsp</result>
+            <result name="input">/error404.jsp</result>
+
+        </action>
+        <action name="flow" class="flowAction">
+            <result name="list" type="redirect">
+                <param name="location">/flow.action</param>
+            </result>
+            <result name="success">/flow.jsp</result>
+        </action>
+        <action name="request_*" class="requestAction" method="{1}">
+            <result name="success">/request.jsp</result>
+            <result name="list" type="redirect">
+                <param name="location">/request_.action</param>
+                <param name="clientId">${clientId}</param>
+            </result>
+            <result name="input">/error404.jsp</result>
+            <result name="add">/request_{1}.jsp</result>
+            <result name="edit">/request_{1}.jsp</result>
+        </action>
+        <action name="lot_*" class="lotAction" method="{1}">
+            <result name="input">/lot_{1}_input.jsp</result>
+            <result name="success">/lot_.jsp</result>
+            <result name="list" type="redirect">
+                <param name="location">/lot_.action</param>
+            </result>
+            <result name="add">/lot_{1}.jsp</result>
+            <result name="edit">/lot_{1}.jsp</result>
+        </action>
+
+    </package>
+
+</struts>
